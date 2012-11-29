@@ -5,6 +5,11 @@ from django.conf.urls import patterns, include, url
 # admin.autodiscover()
 
 urlpatterns = patterns('',
+	url(r'^$', 'swigme.views.login_user', name='Login'),
+
+
+    # Login / logout.
+
     # Examples:
     # url(r'^$', 'swigme.views.home', name='home'),
     # url(r'^swigme/', include('swigme.foo.urls')),
