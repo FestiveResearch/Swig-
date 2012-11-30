@@ -1,7 +1,10 @@
 from django.contrib.auth import logout, authenticate, login
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
+from store.models import OrderItem
 
+def show_store(request):
+	return render_to_response('storefront.html', {'items':OrderItem.objects.all()})
 
 def login_user(request):
 	state = "Please log in below..."

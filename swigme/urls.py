@@ -5,7 +5,10 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-	url(r'^$', 'store.views.login_user', name='Login'),
+	url(r'^$', 'store.views.show_store', name='Swigme'),
+	
+	#bogus login form
+	#url(r'^$', 'store.views.login_user', name='Login'),
 
 
     # Login / logout.

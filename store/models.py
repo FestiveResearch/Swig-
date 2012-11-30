@@ -3,8 +3,7 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
 class UserProfile(models.Model):
-	user = models.OneToOneField(User)
-	
+	user = models.OneToOneField(User)	
 
 class OrderItem(models.Model):
 	ORDER_ITEM_TYPE_CHOICES = (
@@ -16,15 +15,22 @@ class OrderItem(models.Model):
 	item_type = models.CharField(max_length=2, choices=ORDER_ITEM_TYPE_CHOICES)
 	price = models.DecimalField(max_digits=7, decimal_places=2)
 	name = models.CharField(max_length=70)
+	image = models.URLField()
 	def __unicode__(self):
 		return self.name
 
 class OrderLine(models.Model):
+	order = models.ForeignKey('Order')
 	order_item = models.ForeignKey('OrderItem')
 	quantity = models.IntegerField(default=1)
-	other_fees = models.DecimalField(max_digits=7, decimal_places=2)	
+	other_fees = models.DecimalField(max_digits=7, decimal_places=2)
+
+class Order(models.Model):
+	user = models.ForeignKey(User)
+	
 
 class Address(models.Model):
+	user = models.ForeignKey(User)
 	TYPES_CHOICES = (
 		('HOME', 'Home'),
 		('WORK', 'Work'),
